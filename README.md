@@ -3,6 +3,8 @@
 ### Introduction
 Using pure numpy to construct deep learning computational graph framework.
 
+note：To view the code, please switch to the master branch
+
 ### Dev Tools： 
 - pycharm
 
