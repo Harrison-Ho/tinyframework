@@ -1,6 +1,6 @@
 # tinyframework
 
-### introduction
+### Introduction
 Using pure numpy to construct deep learning computational graph framework.
 
 ### Dev Tools： 
