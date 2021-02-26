@@ -17,7 +17,7 @@ note：To view the code, please switch to the master branch
 - Support common optimization methods (such as gd, momentum, adagrad, rmsprop, Adam, etc.)
 - Support common evaluation methods (such as accuracy, precision, auc, f1_score, etc.)
 - Support model save and Model import
-- Support draw calculate graph by pyecharts
+- Support draw calculate graph by pyecharts 
 
 ### logs：
 To be added
