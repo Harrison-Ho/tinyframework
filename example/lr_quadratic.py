@@ -7,19 +7,19 @@ X, y = make_circles(200, noise=0.1, factor=0.2)
 y = y*2-1  # *2-1
 use_quadratic = True
 
-x1 = tf.core.Variable(dim=(2, 1), init=False, trainable=False)
-label = tf.core.Variable(dim=(1, 1), init=False, trainable=False)
-b = tf.core.Variable(dim=(1, 1), init=True, trainable=True)
+x1 = tf.Variable(dim=(2, 1), init=False, trainable=False)
+label = tf.Variable(dim=(1, 1), init=False, trainable=False)
+b = tf.Variable(dim=(1, 1), init=True, trainable=True)
 
 if use_quadratic:
     # trans self and matmul then reshape
     x2 = tf.ops.Reshape(tf.ops.MatMul(x1, tf.ops.Reshape(x1, shape=(1, 2))), shape=(4, 1))
     # concat 1 order and 2 order
     x = tf.ops.Concat(x1, x2)  # this ops first flatten 2 params by line, then concat
-    w = tf.core.Variable(dim=(1, 6), init=True, trainable=True)
+    w = tf.Variable(dim=(1, 6), init=True, trainable=True)
 else:
     x = x1
-    w = tf.core.Variable(dim=(1, 2), init=True, trainable=True)
+    w = tf.Variable(dim=(1, 2), init=True, trainable=True)
 
 out = tf.ops.Add(tf.ops.MatMul(w, x), b)
 predict = tf.ops.Logistic(out)
