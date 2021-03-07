@@ -25,8 +25,8 @@ features = data[['SepalLengthCm',
                  'PetalLengthCm',
                  'PetalWidthCm']].values
 
-x = tf.core.Variable(dim=(4, 1), init=False, trainable=False)
-one_hot = tf.core.Variable(dim=(3, 1), init=False, trainable=False)
+x = tf.Variable(dim=(4, 1), init=False, trainable=False)
+one_hot = tf.Variable(dim=(3, 1), init=False, trainable=False)
 
 hidden1 = tf.layer.fc(x, 4, 10, "ReLU")
 hidden2 = tf.layer.fc(hidden1, 10, 10, "ReLU")
