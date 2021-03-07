@@ -18,6 +18,8 @@ note：To view the code, please switch to the master branch
 - Support common evaluation methods (such as accuracy, precision, auc, f1_score, etc.)
 - Support model save and load
 - Support drawing calculate graph by pyecharts 
+- Support model serving by grpc
+- Support model export
 
 ### logs：
 To be added
