@@ -1,0 +1,23 @@
+
+syntax = "proto3";
+
+package tinyframework.serving;
+
+service TinyFrameworkServing{
+    rpc Predict(PredictRequest)  returns (PredictResponse) {}
+}
+
+message Matrix{
+    repeated float value = 1;
+    repeated int32 dim = 2;
+}
+
+message PredictRequest{
+    repeated Matrix data = 1;
+}
+
+message PredictResponse{
+    repeated Matrix data = 1;
+}
+
+// python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I. *.proto
