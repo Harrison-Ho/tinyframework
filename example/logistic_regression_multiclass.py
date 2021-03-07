@@ -20,10 +20,10 @@ features = data[['SepalLengthCm',
                  'PetalLengthCm',
                  'PetalWidthCm']].values
 
-x = tf.core.Variable(dim=(4, 1), init=False, trainable=False)
-one_hot = tf.core.Variable(dim=(3, 1), init=False, trainable=False)
-w = tf.core.Variable(dim=(3, 4), init=True, trainable=True)
-b = tf.core.Variable(dim=(3, 1), init=True, trainable=True)
+x = tf.Variable(dim=(4, 1), init=False, trainable=False)
+one_hot = tf.Variable(dim=(3, 1), init=False, trainable=False)
+w = tf.Variable(dim=(3, 4), init=True, trainable=True)
+b = tf.Variable(dim=(3, 1), init=True, trainable=True)
 
 linear = tf.ops.Add(tf.ops.MatMul(w, x), b)
 predict = tf.ops.SoftMax(linear)
