@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+message Node{
+    string name = 1;
+    string node_type = 2;
+}
+
+message Matrix{
+    repeated float value = 1;
+    repeated float dim = 2;
+}
+
+message NodeGradients{
+    repeated Node nodes = 1;
+    repeated Matrix gradients = 2;
+    int32 acc_no = 3;
+}
+
+message VariableWeightsReqResp{
+    repeated Node variables = 1;
+    repeated Matrix weights = 2;
+}
+
+//python -m grpc_tools.protoc --python_out=. --grpc_python_out=. -I. comm.proto
