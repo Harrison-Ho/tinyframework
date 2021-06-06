@@ -3,7 +3,8 @@ import pandas as pd
 import tinyframework as tf
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
-# read data
+# read data. remove useless columns
+# |PassengerId    |Survived   | Pclass    |Name   |Sex    |Age   |SibSp   |Parch  |Ticket |Fare   |Cabin  |Embarked
 data = pd.read_csv("../data/titanic.csv").drop(["PassengerId", "Name", "Ticket", "Cabin"], axis=1)
 
 le = LabelEncoder()
@@ -38,13 +39,13 @@ emb_weight_Pclass = tf.core.Variable(dim=(emb_size, Pclass.shape[1]), init=True,
 emb_weight_Sex = tf.core.Variable(dim=(emb_size, Sex.shape[1]), init=True, trainable=True)
 emb_weight_Embark = tf.core.Variable(dim=(emb_size, Embarked.shape[1]), init=True, trainable=True)
 
-emb_Pclass = tf.ops.MatMul(emb_weight_Pclass, x_Pclass)
-emb_Sex = tf.ops.MatMul(emb_weight_Sex, x_Sex)
-emb_Embarked = tf.ops.MatMul(emb_weight_Embark, x_Embarked)
+emb_Pclass = tf.ops.MatMul(emb_weight_Pclass, x_Pclass)  # emb_size*1
+emb_Sex = tf.ops.MatMul(emb_weight_Sex, x_Sex)	 # emb_size*1
+emb_Embarked = tf.ops.MatMul(emb_weight_Embark, x_Embarked)  # emb_size*1
 
 bias = tf.core.Variable(dim=(1, 1), init=True, trainable=True)
 
-emb_feat = tf.ops.Concat(emb_Pclass, emb_Sex, emb_Embarked)
+emb_feat = tf.ops.Concat(emb_Pclass, emb_Sex, emb_Embarked) # emb_size*3
 
 # FM part
 fm = tf.ops.Add(tf.ops.MatMul(w, x),   # 一次部分
@@ -62,7 +63,7 @@ predict = tf.ops.Logistic(output)
 label = tf.core.Variable(dim=(1, 1), init=False, trainable=False)
 
 loss = tf.ops.loss.LogLoss(tf.ops.Multiply(label, output))
-learning_rate = 0.05
+learning_rate = 0.005
 optimizer = tf.optimizer.Adam(tf.default_graph, loss, learning_rate)
 
 batch_size = 64
